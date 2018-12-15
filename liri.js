@@ -62,4 +62,51 @@ function concertThis(argument) {
         }
     })
 }
+function spotifyThisSong(argument){
 
+    spotify
+    .search({ 
+        type: 'track',
+        query: argument
+     })
+    .then(function(response) {
+        var arr = [];
+        // var arr2 = [];
+        response.tracks.items.forEach(function(item) {
+            var currName = item.artists[0].name;
+            var songName = item.name;
+            var linkName = item.href;
+            var albumName = item.album.name;
+
+            if (arr.indexOf(currName) == -1) {
+                arr.push(currName);
+                console.log("Artist: " + currName);
+                console.log("Song Name: " + songName);
+                console.log("Link: " + linkName);
+                console.log("Album: " + albumName + "\n");
+
+                // printObj = {
+                //     artists: currName,
+                //     songName: songName,
+                //     songLink: linkName,
+                //     album: albumName
+                // }
+                // arr2.push(printObj);
+            }
+        });
+        
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+}
+
+function doWhatItSays(argument){
+    fs.readFile('random.txt', 'utf8', function(error, data){
+        if (error) {
+            return console.log(error);
+        }
+        data = data.split(",")
+        spotifyThisSong(data[1]);
+    })
+}
