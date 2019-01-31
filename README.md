@@ -2,10 +2,10 @@
 
 CLI based app that takes in commands and displays info.
 
-Dependencies required are node-spotify-api, moment, and request.
+Dependencies required are node-spotify-api, moment, and request.  
 Additionally spotify api key must be in .env file.
 
-Commands:
+Commands:  
 concert-this "artist"
 
 spotify-this-song "song"
